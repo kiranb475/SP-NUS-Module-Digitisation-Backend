@@ -28,7 +28,7 @@ router.post('/fromtemplate', async (req, res) => {
 
 // write code to delete individual activities too
 router.post('/delete-activity', async (req, res) => {
-    const activityId = req.body
+    const {activityId} = req.body
     const deletedActivity = await Activities.destroy({ where: { id: activityId } })
     res.json(deletedActivity)
 })

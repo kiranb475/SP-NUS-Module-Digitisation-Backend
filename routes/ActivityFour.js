@@ -57,4 +57,11 @@ router.post('/byId/:id/new-chain', async (req,res) => {
 })
 
 
+router.post('/delete-activity', async (req, res) => {
+    const {activityId} = req.body
+    const deletedActivity = await ActivityFours.destroy({ where: { id: activityId } })
+    res.json(deletedActivity)
+})
+
+
 module.exports = router;

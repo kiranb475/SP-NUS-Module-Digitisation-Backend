@@ -9,7 +9,7 @@ router.get("/",async (req,res) => {
 router.post('/', async (req,res) => {
     const content = req.body;
     const newActivityOne = await ActivityOnes.create(content);
-    const newActivities = await Activities.create({UserId:content.UserId,ActivityOneId:newActivityOne.id})
+    const newActivities = await Activities.create({UserId:content.UserId,ActivityOneId:newActivityOne.id,Published:false})
     res.json({ActivitiesId: newActivities, ActivityOneId: newActivityOne.id});
 })
 

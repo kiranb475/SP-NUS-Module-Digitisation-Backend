@@ -7,18 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         Published: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
         }
 
     })
-
-    Activities.associate = (models) => {
-        Activities.hasMany(models.SummariesA6s, {
-            foreignKey: 'StudentTemplateId'
-        })
-    }
-
-
 
     return Activities;
 }

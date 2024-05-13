@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         activity_mvc: {
             type: DataTypes.JSON
+        },
+        lastAuthored: {
+            type: DataTypes.STRING
         }
     })
 

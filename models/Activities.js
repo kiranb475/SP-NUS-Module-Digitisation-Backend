@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        Published: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        }
 
     })
 

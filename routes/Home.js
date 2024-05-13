@@ -35,8 +35,9 @@ router.post('/delete-activity', async (req, res) => {
 
 router.post('/update-published-status/:id', async (req, res) => {
     const id = req.params.id
+    const value = req.body
     const updatedActivities = await Activities.update(
-        {Published: true},
+        {Published: value},
         {where: {id:id}}
     )
     res.json(updatedActivities);

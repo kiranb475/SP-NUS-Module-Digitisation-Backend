@@ -25,7 +25,7 @@ router.post('/byId/:id', async (req, res) => {
     const id = req.params.id
     console.log(data)
     const updatedActivityThree = await ActivityThrees.update(
-        { activity_mvc: data.content.activity_mvc, content: data.content.content, transcript_source_id: data.content.transcript_source_id, MLModel: data.content.MLModel, AllowMLModel: data.content.AllowMLModel, predefinedMLSelection: data.content.predefinedMLSelection,label:data.content.label,instruction:data.content.instruction},
+        { activity_mvc: data.content.activity_mvc, content: data.content.content, transcript_source_id: data.content.transcript_source_id, MLModel: data.content.MLModel, AllowMLModel: data.content.AllowMLModel, predefinedMLSelection: data.content.predefinedMLSelection,label:data.content.label,instruction:data.content.instruction, lastAuthored: data.content.lastAuthored},
         { where: { id: id } }
     )
     res.json(updatedActivityThree)

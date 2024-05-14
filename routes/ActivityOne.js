@@ -31,7 +31,7 @@ router.post('/byId/:id', async (req,res) => {
     const id = req.params.id
     console.log("sos")
     const updatedActivityOne = await ActivityOnes.update(
-        {content:data.content,transcript_source_id:data.transcript_source_id,transcriptEditable:data.transcriptEditable,label:data.label,instruction:data.instruction,activity_mvc:data.activity_mvc},
+        {lastAuthored: data.lastAuthored, content:data.content,transcript_source_id:data.transcript_source_id,transcriptEditable:data.transcriptEditable,label:data.label,instruction:data.instruction,activity_mvc:data.activity_mvc},
         {where: {id:id}}
     )
     res.json(updatedActivityOne)

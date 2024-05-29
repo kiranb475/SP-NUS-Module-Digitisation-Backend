@@ -1,21 +1,25 @@
-// Imports relevant routes modules for handling specific paths
 const express = require('express');
 const app = express();
 const cors = require('cors');
 require("dotenv").config();
 
-const allowedOrigins = ['https://stupendous-naiad-9b0879.netlify.app'];
+const allowedOrigins = [
+  'https://stupendous-naiad-9b0879.netlify.app',
+  /\.netlify\.app$/ // Allow any subdomain of netlify.app
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
+    if (allowedOrigins.some(allowedOrigin => 
+      typeof allowedOrigin === 'string' ? allowedOrigin === origin : allowedOrigin.test(origin))) {
+      return callback(null, true);
+    } else {
       const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
       console.error(msg);
       return callback(new Error(msg), false);
     }
-    return callback(null, true);
   },
   optionsSuccessStatus: 200,
 };

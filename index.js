@@ -11,7 +11,8 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps, curl requests)
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      console.error(msg);
       return callback(new Error(msg), false);
     }
     return callback(null, true);
@@ -76,5 +77,5 @@ db.sequelize
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error('Unable to connect to the database:', err);
   });

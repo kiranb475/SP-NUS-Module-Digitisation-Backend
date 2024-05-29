@@ -4,7 +4,9 @@ const app = express();
 const cors = require('cors');
 require("dotenv").config();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://stupendous-naiad-9b0879.netlify.app',
+}));
 app.use(express.json())
 
 const db = require("./models");

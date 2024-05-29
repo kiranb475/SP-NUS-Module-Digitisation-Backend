@@ -3,10 +3,12 @@ const app = express();
 const cors = require('cors');
 require("dotenv").config();
 
-const allowedOrigins = [
-  'https://stupendous-naiad-9b0879.netlify.app',
-  /\.netlify\.app$/ // Allow any subdomain of netlify.app
-];
+// const allowedOrigins = [
+//   'https://stupendous-naiad-9b0879.netlify.app',
+//   /\.netlify\.app$/ // Allow any subdomain of netlify.app
+// ];
+
+const allowedOrigins = [/^https:\/\/.*\.netlify\.app$/];
 
 const corsOptions = {
   origin: function (origin, callback) {

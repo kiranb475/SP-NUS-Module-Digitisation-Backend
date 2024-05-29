@@ -2,17 +2,18 @@ const express = require("express");
 const router = express.Router();
 const {Users} = require("../models")
 
-router.get("/",async (req,res) => {
-    const listOfUsers =  await Users.findAll();
-    res.json(listOfUsers);
-});
+// router.get("/",async (req,res) => {
+//     const listOfUsers =  await Users.findAll();
+//     res.json(listOfUsers);
+// });
 
-router.post('/', async (req,res) => {
-    const content = req.body;
-    await Users.create(content);
-    res.json(content);
-})
+// router.post('/', async (req,res) => {
+//     const content = req.body;
+//     await Users.create(content);
+//     res.json(content);
+// })
 
+//handles user login
 router.post('/login', async (req, res) => {
     const {username, password, occupation} = req.body;
     const user = await Users.findOne({ where: [
@@ -24,6 +25,7 @@ router.post('/login', async (req, res) => {
     
 })
 
+//handles user registration
 router.post('/register', async (req,res) => {
     const content = req.body;
     const user = await Users.create(content);

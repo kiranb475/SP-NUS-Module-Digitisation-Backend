@@ -2,11 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ActivitySixs, Activities } = require("../models")
 
-router.get("/", async (req, res) => {
-    const listOfActivitySixs = await ActivitySixs.findAll();
-    res.json(listOfActivitySixs);
-});
-
+//creates an entry of activity six with the data provided and updates overall activity chain
 router.post('/', async (req, res) => {
     const { id, content } = req.body;
     const newActivitySix = await ActivitySixs.create(content);
@@ -14,12 +10,14 @@ router.post('/', async (req, res) => {
     res.json(newActivitySix);
 })
 
+//returns data of activity six for corresponding activity id
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id
     const activitySix = await ActivitySixs.findByPk(id)
     res.json(activitySix)
 })
 
+//updates activity six data
 router.post('/byId/:id', async (req, res) => {
     const data = req.body;
     const id = req.params.id
@@ -30,6 +28,7 @@ router.post('/byId/:id', async (req, res) => {
     res.json(updatedActivitySix)
 })
 
+//handles update request of data from instructors end via the home page (custom activities instructor)
 router.post('/home/:id', async (req, res) => {
     const data = req.body
     const id = req.params.id
@@ -40,19 +39,11 @@ router.post('/home/:id', async (req, res) => {
     res.json(updatedActivitySix)
 })
 
-router.post('/new-chain', async (req, res) => {
-    const { id, content } = req.body;
-    const newActivitySix = await ActivitySixs.create(content);
-    const newActivities = await Activities.create({ UserId: content.UserId, ActivitySixId: newActivitySix.id })
-    res.json({ ActivitiesId: newActivities, ActivitySixId: newActivitySix.id });
-})
-
+//deletes activity six id
 router.post('/delete-activity', async (req, res) => {
     const { activityId } = req.body
     const deletedActivity = await ActivitySixs.destroy({ where: { id: activityId } })
     res.json(deletedActivity)
 })
-
-
 
 module.exports = router;

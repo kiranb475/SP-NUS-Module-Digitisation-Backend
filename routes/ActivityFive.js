@@ -2,11 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ActivityFives, Activities } = require("../models")
 
-router.get("/", async (req, res) => {
-    const listOfActivityFives = await ActivityFives.findAll();
-    res.json(listOfActivityFives);
-});
-
+//creates an entry of activity five with the data provided and updates overall activity chain
 router.post('/', async (req, res) => {
     const { id, content } = req.body;
     const newActivityFive = await ActivityFives.create(content);
@@ -14,6 +10,7 @@ router.post('/', async (req, res) => {
     res.json(newActivityFive);
 })
 
+//returns data of activity five for corresponding activity id
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id
     const activityFive = await ActivityFives.findByPk(id)
@@ -21,16 +18,22 @@ router.get('/byId/:id', async (req, res) => {
     res.json(activityFive)
 })
 
+//updates activity five data
 router.post('/byId/:id', async (req, res) => {
     const data = req.body;
     const id = req.params.id
     const updatedActivityFive = await ActivityFives.update(
-        { activity_mvc: data.content.activity_mvc, content: data.content.content, MLClusters: data.content.MLClusters, label: data.content.label, instruction: data.content.instruction, lastAuthored: data.content.lastAuthored },
+        {
+            activity_mvc: data.content.activity_mvc, content: data.content.content,
+            MLClusters: data.content.MLClusters, label: data.content.label, instruction: data.content.instruction,
+            lastAuthored: data.content.lastAuthored
+        },
         { where: { id: id } }
     )
     res.json(updatedActivityFive)
 })
 
+//handles update request of data from instructors end via the home page (custom activities instructor)
 router.post('/home/:id', async (req, res) => {
     const data = req.body
     const id = req.params.id
@@ -41,13 +44,7 @@ router.post('/home/:id', async (req, res) => {
     res.json(updatedActivityFive)
 })
 
-router.post('/new-chain', async (req, res) => {
-    const { id, content } = req.body;
-    const newActivityFive = await ActivityFives.create(content);
-    const newActivities = await Activities.create({ UserId: content.UserId, ActivityFiveId: newActivityFive.id })
-    res.json({ ActivitiesId: newActivities, ActivityFiveId: newActivityFive.id });
-})
-
+//deletes activity id of future activities
 router.post('/byId/:id/new-chain', async (req, res) => {
     const id = req.params.id
     const updatedActivities = await Activities.update(
@@ -57,6 +54,7 @@ router.post('/byId/:id/new-chain', async (req, res) => {
     res.json(updatedActivities)
 })
 
+//deletes activity five id
 router.post('/delete-activity', async (req, res) => {
     const { activityId } = req.body
     const deletedActivity = await ActivityFives.destroy({ where: { id: activityId } })

@@ -13,9 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         AllowMLModel: {
             type: DataTypes.BOOLEAN, 
         }, 
-        predefinedMLSelection: {
-            type: DataTypes.BOOLEAN,
-        },
         label: {
             type: DataTypes.STRING,
         },

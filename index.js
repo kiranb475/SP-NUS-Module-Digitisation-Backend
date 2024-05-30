@@ -13,7 +13,7 @@ const allowedOrigins = [/^https:\/\/.*\.netlify\.app$/];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl requests)
+    //allow requests with no origin 
     if (!origin) return callback(null, true);
     if (allowedOrigins.some(allowedOrigin => 
       typeof allowedOrigin === 'string' ? allowedOrigin === origin : allowedOrigin.test(origin))) {
@@ -32,47 +32,47 @@ app.use(express.json());
 
 const db = require("./models");
 
-// Handles requests to the "/activityone" path
+//handles requests to the "/activityone" path
 const activityOneRouter = require('./routes/ActivityOne');
 app.use("/activityone", activityOneRouter);
 
-// Handles requests to the "/activitytwo" path
+//handles requests to the "/activitytwo" path
 const activityTwoRouter = require('./routes/ActivityTwo');
 app.use("/activitytwo", activityTwoRouter);
 
-// Handles requests to the "/activitythree" path
+//handles requests to the "/activitythree" path
 const activityThreeRouter = require('./routes/ActivityThree');
 app.use("/activitythree", activityThreeRouter);
 
-// Handles requests to the "/activityfour" path
+//handles requests to the "/activityfour" path
 const activityFourRouter = require('./routes/ActivityFour');
 app.use("/activityfour", activityFourRouter);
 
-// Handles requests to the "/activityfive" path
+//handles requests to the "/activityfive" path
 const activityFiveRouter = require('./routes/ActivityFive');
 app.use("/activityfive", activityFiveRouter);
 
-// Handles requests to the "/activitysix" path
+//handles requests to the "/activitysix" path
 const activitySixRouter = require('./routes/ActivitySix');
 app.use("/activitysix", activitySixRouter);
 
-// Handles requests to the "/userauth" path
+//handles requests to the "/userauth" path
 const usersRouter = require('./routes/Users');
 app.use("/userauth", usersRouter);
 
-// Handles requests to the "/home" path
+//handles requests to the "/home" path
 const homeRouter = require('./routes/Home');
 app.use("/home", homeRouter);
 
-// Handles requests to the "/studentlog" path
+//handles requests to the "/studentlog" path
 const studentLogsRouter = require('./routes/StudentLog');
 app.use("/studentlog", studentLogsRouter);
 
-// Handles requests to the "/summary" path
+//handles requests to the "/summary" path
 const summaryRouter = require('./routes/Summary');
 app.use("/summary", summaryRouter);
 
-// Handles requests to the "/instructorlog" path
+//handles requests to the "/instructorlog" path
 const instructorLogsRouter = require('./routes/InstructorLog');
 app.use("/instructorlog", instructorLogsRouter);
 

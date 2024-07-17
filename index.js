@@ -80,8 +80,8 @@ app.use("/instructorlog", instructorLogsRouter);
 db.sequelize
   .sync()
   .then(() => {
-    app.listen(process.env.PORT || 80, () => {
-      console.log(`Server running on port ${process.env.PORT || 80}`);
+    app.listen(process.env.PORT || 8080, () => {
+      console.log(`Server running on port ${process.env.PORT || 8080}`);
     });
   })
   .catch((err) => {

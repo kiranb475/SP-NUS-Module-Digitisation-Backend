@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "MySQL123!",
-    "database": "aisg_alset",
-    "host": "127.0.0.1",
+    "username": "wd4afwakf8zhn4d7",
+    "password": "tle2686xff33cwoz",
+    "database": "x6v7dwr3burlviox",
+    "host": "e764qqay0xlsc4cz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
